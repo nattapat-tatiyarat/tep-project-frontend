@@ -13,7 +13,7 @@
       <v-list dense nav>
         <!-- Dashboard -->
         <v-list-item-group active-class="SelectedTile-active" mandatory>
-          <v-list-item class="header" disabled>
+          <v-list-item style="color: black" disabled>
             <v-list-item-icon>
               <v-icon>mdi-table</v-icon>
             </v-list-item-icon>
@@ -33,7 +33,7 @@
           </v-list-item>
 
           <!-- Graph -->
-          <v-list-item class="header" disabled>
+          <v-list-item style="color: black" disabled>
             <v-list-item-icon>
               <v-icon>mdi-chart-line</v-icon>
             </v-list-item-icon>
@@ -95,6 +95,6 @@ export default {
 
 <style scoped>
 .header {
-  color: black;
+  color: "#000000";
 }
 </style>

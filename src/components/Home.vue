@@ -1,5 +1,5 @@
 <template>
-  <v-app class="body">
+  <v-app style="background-color: rgb(253, 253, 253)">
     <v-main>
       <Navigation v-if="login" class="navigation" />
       <router-view />
@@ -23,12 +23,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.body {
-  background-color: hsl(0, 0%, 98%);
-}
-.navigation {
-  position: static;
-}
-</style>
