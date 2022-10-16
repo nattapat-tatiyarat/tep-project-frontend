@@ -6,7 +6,7 @@
           <v-col
             cols="12"
             offset="2"
-            class="font-weight-bold"
+            class="text-h5"
             v-if="this.$vuetify.breakpoint.xs"
             ><span>Login</span></v-col
           >
