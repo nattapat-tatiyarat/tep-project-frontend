@@ -134,7 +134,6 @@ export default {
   methods: {
     async save() {
       if (this.mode == "create") {
-        console.log();
         if (!this.$refs.form.validate()) {
           this.$awn.alert("Please complete the form");
         } else {
