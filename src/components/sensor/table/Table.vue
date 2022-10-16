@@ -72,7 +72,7 @@ export default {
         { text: "TEMP", value: "temp" },
         { text: "HUMIDITY", value: "humidity" },
         { text: "LIGHT", value: "light" },
-        { text: "SOIL MOISTURE", value: "soilMoisture" },
+        { text: "SOIL MOISTURE", value: "soilMoisture", class: "nowrap" },
         { text: "SOIL NPK", value: "soilNPK" },
         { text: "SOIL PH", value: "soilPH" },
         { text: "", value: "action", sortable: false },
@@ -117,3 +117,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.v-data-table-header th {
+  white-space: nowrap;
+}
+</style>
