@@ -42,7 +42,9 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    if (window.localStorage.getItem("login")) {
+      this.$awn.asyncBlock(this.fetchData(), null);
+    }
   },
   computed: {
     average() {

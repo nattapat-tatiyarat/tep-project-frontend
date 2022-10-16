@@ -5,54 +5,67 @@
       <p v-if="mode == 'update'" class="updatedAt">
         Last updated : {{ sensorData.updatedAt }}
       </p>
-      <div class="form">
+      <v-form class="form" ref="form" v-model="valid">
         <v-text-field
           v-model="newData.co2"
-          @change="isChange = true"
           label="CO2"
+          type="number"
+          hide-spin-buttons
+          :rules="[rules.required]"
         >
         </v-text-field>
         <v-text-field
           v-model="newData.temp"
-          @change="isChange = true"
           label="Temp"
+          type="number"
+          hide-spin-buttons
+          :rules="[rules.required]"
         >
         </v-text-field>
         <v-text-field
           v-model="newData.humidity"
-          @change="isChange = true"
           label="Humidity"
+          type="number"
+          hide-spin-buttons
+          :rules="[rules.required]"
         >
         </v-text-field>
         <v-text-field
           v-model="newData.light"
-          @change="isChange = true"
           label="Light"
+          type="number"
+          hide-spin-buttons
+          :rules="[rules.required]"
         >
         </v-text-field>
         <v-text-field
           v-model="newData.soilMoisture"
-          @change="isChange = true"
           label="Soil Moisture"
+          type="number"
+          hide-spin-buttons
+          :rules="[rules.required]"
         >
         </v-text-field>
         <v-text-field
           v-model="newData.soilNPK"
-          @change="isChange = true"
           label="Soil NPK"
+          type="number"
+          hide-spin-buttons
+          :rules="[rules.required]"
         >
         </v-text-field>
         <v-text-field
           v-model="newData.soilPH"
-          @change="isChange = true"
           label="Soil PH"
-        >
-        </v-text-field>
-      </div>
+          type="number"
+          hide-spin-buttons
+          :rules="[rules.required]"
+        ></v-text-field>
+      </v-form>
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" @click="save">{{
+      <v-btn color="primary" @click="save(), validate()">{{
         mode == "create" ? "CREATE" : "SAVE"
       }}</v-btn
       ><v-btn color="error" @click="closeDialog">CANCEL</v-btn>
@@ -84,25 +97,45 @@ export default {
   },
   data() {
     return {
-      newData: {
-        id: this.mode == "create" ? "" : this.sensorData._id,
-        co2: this.mode == "create" ? "" : this.sensorData.co2,
-        temp: this.mode == "create" ? "" : this.sensorData.temp,
-        humidity: this.mode == "create" ? "" : this.sensorData.humidity,
-        light: this.mode == "create" ? "" : this.sensorData.light,
-        soilMoisture: this.mode == "create" ? "" : this.sensorData.soilMoisture,
-        soilNPK: this.mode == "create" ? "" : this.sensorData.soilNPK,
-        soilPH: this.mode == "create" ? "" : this.sensorData.soilPH,
-      },
-      title: this.mode == "create" ? "Create" : "Edit",
-      isChange: false,
       emits: ["dialog", "success"],
+      oldData: {
+        id: this.mode == "create" ? "" : this.sensorData._id.toString(),
+        co2: this.mode == "create" ? "" : this.sensorData.co2.toString(),
+        temp: this.mode == "create" ? "" : this.sensorData.temp.toString(),
+        humidity:
+          this.mode == "create" ? "" : this.sensorData.humidity.toString(),
+        light: this.mode == "create" ? "" : this.sensorData.light.toString(),
+        soilMoisture:
+          this.mode == "create" ? "" : this.sensorData.soilMoisture.toString(),
+        soilNPK:
+          this.mode == "create" ? "" : this.sensorData.soilNPK.toString(),
+        soilPH: this.mode == "create" ? "" : this.sensorData.soilPH.toString(),
+      },
+      newData: {
+        id: this.mode == "create" ? "" : this.sensorData._id.toString(),
+        co2: this.mode == "create" ? "" : this.sensorData.co2.toString(),
+        temp: this.mode == "create" ? "" : this.sensorData.temp.toString(),
+        humidity:
+          this.mode == "create" ? "" : this.sensorData.humidity.toString(),
+        light: this.mode == "create" ? "" : this.sensorData.light.toString(),
+        soilMoisture:
+          this.mode == "create" ? "" : this.sensorData.soilMoisture.toString(),
+        soilNPK:
+          this.mode == "create" ? "" : this.sensorData.soilNPK.toString(),
+        soilPH: this.mode == "create" ? "" : this.sensorData.soilPH.toString(),
+      },
+      title: this.mode == "create" ? "Add" : "Edit",
+      rules: {
+        required: (value) => !!value,
+      },
+      valid: false,
     };
   },
   methods: {
     async save() {
       if (this.mode == "create") {
-        if (!this.isChange) {
+        console.log();
+        if (!this.$refs.form.validate()) {
           this.$awn.alert("Please complete the form");
         } else {
           try {
@@ -120,24 +153,37 @@ export default {
           }
         }
       } else {
-        if (!this.isChange) {
+        if (!this.isChange()) {
           this.closeDialog();
         } else {
-          try {
-            const res = await update(this.newData);
-            if (res.data.status_code == 200) {
-              this.$emit("success", true);
-              this.closeDialog();
-              this.$awn.success("Update success");
-            } else {
-              this.$awn.alert("Error, try again later");
+          if (!this.$refs.form.validate()) {
+            this.$awn.alert("Please complete the form");
+          } else {
+            try {
+              const res = await update(this.newData);
+              if (res.data.status_code == 200) {
+                this.$emit("success", true);
+                this.closeDialog();
+                this.$awn.success("Update success");
+              } else {
+                this.$awn.alert("Error, try again later");
+              }
+            } catch (err) {
+              this.$awn.alert("Update failed");
+              console.log(err);
             }
-          } catch (err) {
-            this.$awn.alert("Update failed");
-            console.log(err);
           }
         }
       }
+    },
+    validate() {
+      this.$refs.form.validate();
+    },
+    isChange() {
+      if (JSON.stringify(this.newData) !== JSON.stringify(this.oldData)) {
+        return true;
+      }
+      return false;
     },
     closeDialog() {
       this.$emit("dialog", false);

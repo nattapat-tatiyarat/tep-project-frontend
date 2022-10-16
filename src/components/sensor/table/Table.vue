@@ -11,7 +11,10 @@
         ></v-text-field
       ></v-col>
       <v-col align="right"
-        ><v-btn class="elevation-2" color="white" @click="dialogCreate = true"
+        ><v-btn
+          class="elevation-2"
+          color="white"
+          @click="(dialogCreate = true), dialogCreateKey++"
           ><v-icon small>mdi-plus-circle</v-icon
           ><span style="margin-left: 5px">ADD</span></v-btn
         ></v-col
@@ -36,7 +39,7 @@
         :sensorData="rowData"
         @dialog="dialogEdit = false"
         @success="fetchData"
-        :key="dialogKey"
+        :key="dialogEditKey"
       />
     </v-dialog>
 
@@ -45,7 +48,7 @@
         mode="create"
         @dialog="dialogCreate = false"
         @success="fetchData"
-        :key="dialogKey"
+        :key="dialogCreateKey"
       />
     </v-dialog>
   </div>
@@ -75,8 +78,8 @@ export default {
         { text: "", value: "action", sortable: false },
       ],
       sensorData: [],
-      dialogKey: 0,
-      dialog: false,
+      dialogCreateKey: 0,
+      dialogEditKey: 0,
       rowData: {},
     };
   },
@@ -108,7 +111,7 @@ export default {
     },
     edit(value) {
       this.rowData = value;
-      this.dialogKey++;
+      this.dialogEditKey++;
       this.dialogEdit = true;
     },
   },
