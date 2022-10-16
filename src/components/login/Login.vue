@@ -3,10 +3,10 @@
     <v-container class="container">
       <v-card class="card">
         <v-row align="center">
-          <v-col cols="2" offset="2">
+          <v-col lg="2" md="3" sm="3" offset="2">
             <label>Username :</label>
           </v-col>
-          <v-col cols="4"
+          <v-col lg="4" md="4" sm="5"
             ><v-text-field
               v-model="username"
               placeholder="๊Username"
@@ -17,10 +17,10 @@
           ></v-col>
         </v-row>
         <v-row align="center">
-          <v-col cols="2" offset="2">
+          <v-col lg="2" md="3" sm="3" offset="2">
             <label>Password :</label>
           </v-col>
-          <v-col cols="4"
+          <v-col lg="4" md="4" sm="5"
             ><v-text-field
               v-model="password"
               type="password"
@@ -32,7 +32,7 @@
           ></v-col>
         </v-row>
         <v-row>
-          <v-col cols="2" offset="4">
+          <v-col offset-lg="4" offset-md="5" offset-sm="5">
             <v-btn @click="login" color="primary" style="padding: 0 30px"
               >Login</v-btn
             >
@@ -80,7 +80,7 @@ export default {
 
 <style scoped>
 .container {
-  padding: 0 200px;
+  padding: 0 10%;
 }
 .card {
   padding: 50px 0;

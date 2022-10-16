@@ -85,7 +85,7 @@ export default {
   margin: 30px 0;
 }
 .container {
-  padding: 0 100px;
+  padding: 0 5%;
 }
 .chart {
   padding: 20px;
