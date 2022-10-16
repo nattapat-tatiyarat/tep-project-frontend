@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background-color: rgb(252, 252, 252)">
+  <v-app style="background-color: rgb(245, 245, 245)">
     <v-main>
       <Navigation v-if="login" class="navigation" />
       <router-view />
