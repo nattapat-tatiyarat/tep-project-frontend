@@ -18,6 +18,7 @@
     "vuetify": "^2.6.0"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.15",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "sass": "^1.32.7",
