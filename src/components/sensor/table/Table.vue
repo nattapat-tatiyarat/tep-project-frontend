@@ -123,9 +123,23 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 th,
 td {
   white-space: nowrap;
+}
+@media all and (max-width: 599.9999px) {
+  .v-data-footer {
+    justify-content: center;
+    padding-bottom: 8px;
+
+    & .v-data-footer__select {
+      margin: 0 auto;
+    }
+
+    & .v-data-footer__pagination {
+      margin: 0;
+    }
+  }
 }
 </style>
