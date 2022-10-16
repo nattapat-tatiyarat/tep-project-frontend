@@ -1,6 +1,11 @@
 <template>
-  <v-card width="256">
-    <v-navigation-drawer app permanent>
+  <div>
+    <v-toolbar elevation="1">
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
+      <v-btn color="error" text @click="logout">LOGOUT</v-btn>
+    </v-toolbar>
+    <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">{{ title }}</v-list-item-title>
@@ -8,7 +13,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-divider></v-divider>
+      <v-divider style="margin-top: -3px"></v-divider>
 
       <v-list dense nav>
         <!-- Dashboard -->
@@ -62,7 +67,7 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -88,7 +93,21 @@ export default {
         { title: "Soil NPK", path: "/graph/6", field: "soilNPK" },
         { title: "Soil pH", path: "/graph/7", field: "soilPH" },
       ],
+      drawer: false,
     };
+  },
+  mounted() {
+    if (this.$vuetify.breakpoint.lg || this.$vuetify.breakpoint.xl) {
+      this.drawer = true;
+    }
+  },
+  methods: {
+    logout() {
+      this.$awn.confirm("Logout ?", () => {
+        window.localStorage.removeItem("login");
+        this.$router.push("/login");
+      });
+    },
   },
 };
 </script>

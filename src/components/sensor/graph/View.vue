@@ -1,7 +1,6 @@
 <template>
   <div class="co2-page">
     <v-container class="container">
-      <Title />
       <v-card class="chart">
         <v-card-title
           ><v-chip class="text-h6">{{ title }}</v-chip></v-card-title
@@ -25,12 +24,10 @@
 <script>
 import { getByField } from "@/api/fetch";
 import { formatDateNumber } from "@/utils/formatDate";
-import Title from "@/components/utils/Title.vue";
-import LineChart from "@/components/utils/chart/LineChart.vue";
+import LineChart from "@/components/chart/LineChart.vue";
 
 export default {
   components: {
-    Title,
     LineChart,
   },
   data() {
@@ -86,9 +83,5 @@ export default {
 }
 .container {
   padding: 0 5%;
-}
-.chart {
-  padding: 20px;
-  margin-top: 10px;
 }
 </style>

@@ -3,13 +3,33 @@
     <v-container class="container">
       <v-card class="card">
         <v-row align="center">
-          <v-col lg="2" md="3" sm="3" offset="2">
-            <label>Username :</label>
+          <v-col
+            cols="12"
+            offset="2"
+            class="font-weight-bold"
+            v-if="this.$vuetify.breakpoint.xs"
+            ><span>Login</span></v-col
+          >
+          <v-col
+            cols="12"
+            lg="2"
+            md="3"
+            sm="3"
+            offset="2"
+            v-if="!this.$vuetify.breakpoint.xs"
+          >
+            <span>Username :</span>
           </v-col>
-          <v-col lg="4" md="4" sm="5"
+          <v-col
+            cols="8"
+            lg="4"
+            md="4"
+            sm="5"
+            :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
             ><v-text-field
               v-model="username"
-              placeholder="Username"
+              :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Username'"
+              :label="this.$vuetify.breakpoint.xs ? 'Username' : ''"
               outlined
               dense
               hide-details
@@ -17,14 +37,28 @@
           ></v-col>
         </v-row>
         <v-row align="center">
-          <v-col lg="2" md="3" sm="3" offset="2">
-            <label>Password :</label>
+          <v-col
+            cols="12"
+            lg="2"
+            md="3"
+            sm="3"
+            offset="2"
+            v-if="!this.$vuetify.breakpoint.xs"
+          >
+            <span>Password :</span>
           </v-col>
-          <v-col lg="4" md="4" sm="5"
+          <v-col
+            cols="8"
+            lg="4"
+            md="4"
+            sm="5"
+            :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
             ><v-text-field
               v-model="password"
               type="password"
               placeholder="Password"
+              :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Password'"
+              :label="this.$vuetify.breakpoint.xs ? 'Password' : ''"
               outlined
               dense
               hide-details
@@ -32,7 +66,7 @@
           ></v-col>
         </v-row>
         <v-row>
-          <v-col offset-lg="4" offset-md="5" offset-sm="5">
+          <v-col offset="2" offset-lg="4" offset-md="5" offset-sm="5">
             <v-btn @click="login" color="primary" style="padding: 0 30px"
               >Login</v-btn
             >

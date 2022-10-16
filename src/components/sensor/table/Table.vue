@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-row class="mx-auto"
-      ><v-col cols="6">
+    <v-row class="mx-1"
+      ><v-col :cols="this.$vuetify.breakpoint.xs ? '8' : '6'">
         <v-text-field
           v-model="search"
           class="py-0"
@@ -24,11 +24,16 @@
       :headers="headers"
       :items="sensorData"
       :search="search"
-      :items-per-page="10"
+      :items-per-page="this.$vuetify.breakpoint.xs ? 5 : 10"
     >
       <template v-slot:item.action="{ item }">
-        <v-btn @click="edit(item)" class="elevation-2" color="white" x-small fab
-          ><v-icon small>mdi-pencil</v-icon></v-btn
+        <v-btn
+          @click="edit(item)"
+          :color="
+            $vuetify.breakpoint.lg || $vuetify.breakpoint.xl ? 'white' : 'error'
+          "
+          small
+          >Edit</v-btn
         >
       </template>
     </v-data-table>
@@ -119,7 +124,8 @@ export default {
 </script>
 
 <style>
-.v-data-table-header th {
+th,
+td {
   white-space: nowrap;
 }
 </style>
