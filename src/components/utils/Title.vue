@@ -3,10 +3,10 @@
     <v-row align="center"
       ><v-col cols="5" class="d-none d-lg-flex text-h4">{{ title }}</v-col
       ><v-col class="chip" align="right"
-        ><v-chip class="chip__time" color="white"
+        ><v-chip class="chip__time elevation-2" color="white"
           ><v-icon left>mdi-clock</v-icon>{{ newDate }}</v-chip
         ><v-chip
-          class="chip__logout font-weight-bold"
+          class="chip__logout font-weight-bold elevation-2"
           color="white"
           @click="logout"
           >LOGOUT</v-chip
