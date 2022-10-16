@@ -13,7 +13,7 @@
       <v-col align="right"
         ><v-btn
           class="elevation-2"
-          color="white"
+          color="success"
           @click="(dialogCreate = true), dialogCreateKey++"
           ><v-icon small>mdi-plus-circle</v-icon
           ><span style="margin-left: 5px">ADD</span></v-btn
