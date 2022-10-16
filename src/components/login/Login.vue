@@ -9,7 +9,7 @@
           <v-col lg="4" md="4" sm="5"
             ><v-text-field
               v-model="username"
-              placeholder="๊Username"
+              placeholder="Username"
               outlined
               dense
               hide-details
