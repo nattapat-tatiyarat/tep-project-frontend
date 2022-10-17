@@ -2,76 +2,79 @@
   <div class="mt-8">
     <v-container class="container">
       <v-card class="card">
-        <v-row align="center">
-          <v-col
-            cols="12"
-            offset="2"
-            class="text-h5"
-            v-if="this.$vuetify.breakpoint.xs"
-            ><span>Login</span></v-col
-          >
-          <v-col
-            cols="12"
-            lg="2"
-            md="3"
-            sm="3"
-            offset="2"
-            v-if="!this.$vuetify.breakpoint.xs"
-          >
-            <span>Username :</span>
-          </v-col>
-          <v-col
-            cols="8"
-            lg="4"
-            md="4"
-            sm="5"
-            :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
-            ><v-text-field
-              v-model="username"
-              :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Username'"
-              :label="this.$vuetify.breakpoint.xs ? 'Username' : ''"
-              outlined
-              dense
-              hide-details
-            ></v-text-field
-          ></v-col>
-        </v-row>
-        <v-row align="center">
-          <v-col
-            cols="12"
-            lg="2"
-            md="3"
-            sm="3"
-            offset="2"
-            v-if="!this.$vuetify.breakpoint.xs"
-          >
-            <span>Password :</span>
-          </v-col>
-          <v-col
-            cols="8"
-            lg="4"
-            md="4"
-            sm="5"
-            :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
-            ><v-text-field
-              v-model="password"
-              type="password"
-              placeholder="Password"
-              :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Password'"
-              :label="this.$vuetify.breakpoint.xs ? 'Password' : ''"
-              outlined
-              dense
-              hide-details
-            ></v-text-field
-          ></v-col>
-        </v-row>
-        <v-row>
-          <v-col offset="2" offset-lg="4" offset-md="5" offset-sm="5">
-            <v-btn @click="loading" color="primary" style="padding: 0 30px"
-              >Login</v-btn
+        <v-form class="form" ref="form" v-model="valid">
+          <v-row align="center">
+            <v-col
+              cols="12"
+              offset="2"
+              class="text-h5"
+              v-if="this.$vuetify.breakpoint.xs"
+              ><span>Login</span></v-col
             >
-          </v-col>
-        </v-row>
+            <v-col
+              cols="12"
+              lg="2"
+              md="3"
+              sm="3"
+              offset="2"
+              v-if="!this.$vuetify.breakpoint.xs"
+            >
+              <span>Username :</span>
+            </v-col>
+            <v-col
+              cols="8"
+              lg="4"
+              md="4"
+              sm="5"
+              :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
+              ><v-text-field
+                v-model="username"
+                :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Username'"
+                :label="this.$vuetify.breakpoint.xs ? 'Username' : ''"
+                :rules="[rules.required]"
+                outlined
+                dense
+                hide-details
+              ></v-text-field
+            ></v-col>
+          </v-row>
+          <v-row align="center">
+            <v-col
+              cols="12"
+              lg="2"
+              md="3"
+              sm="3"
+              offset="2"
+              v-if="!this.$vuetify.breakpoint.xs"
+            >
+              <span>Password :</span>
+            </v-col>
+            <v-col
+              cols="8"
+              lg="4"
+              md="4"
+              sm="5"
+              :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
+              ><v-text-field
+                v-model="password"
+                type="password"
+                :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Password'"
+                :label="this.$vuetify.breakpoint.xs ? 'Password' : ''"
+                :rules="[rules.required]"
+                outlined
+                dense
+                hide-details
+              ></v-text-field
+            ></v-col>
+          </v-row>
+          <v-row>
+            <v-col offset="2" offset-lg="4" offset-md="5" offset-sm="5">
+              <v-btn @click="login" color="primary" style="padding: 0 30px"
+                >Login</v-btn
+              >
+            </v-col>
+          </v-row>
+        </v-form>
       </v-card>
     </v-container>
   </div>
@@ -85,16 +88,24 @@ export default {
     return {
       username: "",
       password: "",
+      rules: {
+        required: (value) => !!value,
+      },
+      valid: false,
     };
   },
   mounted() {
     window.localStorage.removeItem("login");
   },
   methods: {
-    loading() {
-      this.$awn.asyncBlock(this.login(), null);
+    login() {
+      if (!this.$refs.form.validate()) {
+        this.$awn.alert("Require all fields");
+      } else {
+        this.$awn.asyncBlock(this.fetchLogin(), null);
+      }
     },
-    async login() {
+    async fetchLogin() {
       try {
         const res = await isLogin({
           username: this.username,
