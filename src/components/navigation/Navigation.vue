@@ -80,7 +80,6 @@ export default {
           {
             title: "Sensor Data",
             path: "/dashboard?title=Sensor%20Data",
-            field: "",
           },
         ],
         graph: [
