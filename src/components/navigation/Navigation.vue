@@ -3,7 +3,7 @@
     <v-app-bar elevation="1" color="white" app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-btn color="error" text @click="logout">LOGOUT</v-btn>
+      <v-btn color="error" text @click="dialogLogout = true">LOGOUT</v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
@@ -67,6 +67,20 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
+
+    <!-- Logout Confirmation -->
+    <v-dialog v-model="dialogLogout" width="350" persistent>
+      <v-card class="py-1">
+        <v-card-title class="justify-center">Confirmation</v-card-title>
+        <v-card-text class="text-center"
+          >Are you sure you want to Log out?</v-card-text
+        >
+        <v-card-actions class="justify-center">
+          <v-btn color="primary" @click="logout">Logout</v-btn>
+          <v-btn color="error" @click="dialogLogout = false">Cancel</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -94,6 +108,7 @@ export default {
         { title: "Soil pH", path: "/graph/7", field: "soilPH" },
       ],
       drawer: false,
+      dialogLogout: false,
     };
   },
   mounted() {
@@ -103,10 +118,8 @@ export default {
   },
   methods: {
     logout() {
-      this.$awn.confirm("Logout ?", () => {
-        window.localStorage.removeItem("login");
-        this.$router.push("/login");
-      });
+      window.localStorage.removeItem("login");
+      this.$router.push("/login");
     },
   },
 };
