@@ -119,9 +119,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.header {
-  color: "#000000";
-}
-</style>
