@@ -2,7 +2,12 @@
   <div class="mt-8">
     <v-container class="container">
       <v-card class="card">
-        <v-form class="form" ref="form" v-model="valid">
+        <v-form
+          class="form"
+          ref="form"
+          v-model="valid"
+          @submit.prevent="$event.preventDefault()"
+        >
           <v-row align="center">
             <v-col
               cols="12"
@@ -69,7 +74,11 @@
           </v-row>
           <v-row>
             <v-col offset="2" offset-lg="4" offset-md="5" offset-sm="5">
-              <v-btn @click="login" color="primary" style="padding: 0 30px"
+              <v-btn
+                type="submit"
+                @click="login"
+                color="primary"
+                style="padding: 0 30px"
                 >Login</v-btn
               >
             </v-col>

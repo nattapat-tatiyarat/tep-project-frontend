@@ -1,20 +1,34 @@
 <template>
   <div class="view-page">
     <v-container class="container">
-      <v-card><SensorTable /></v-card>
+      <LastSync />
+      <v-card class="mt-8"><SensorTable /></v-card>
     </v-container>
   </div>
 </template>
 
 <script>
+import { formatDateText } from "@/utils/formatDate";
+import LastSync from "@/components/utils/LastSync.vue";
 import SensorTable from "@/components/sensor/table/Table.vue";
 
 export default {
   components: {
+    LastSync,
     SensorTable,
+  },
+  computed: {
+    newDate() {
+      return formatDateText(new Date());
+    },
   },
   data() {
     return {};
+  },
+  methods: {
+    peak() {
+      console.log("hovered");
+    },
   },
 };
 </script>

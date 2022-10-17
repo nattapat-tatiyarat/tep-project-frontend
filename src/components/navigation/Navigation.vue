@@ -1,10 +1,22 @@
 <template>
   <div>
     <!-- App bar -->
-    <v-app-bar elevation="1" color="white" app>
+    <v-app-bar
+      elevation="1"
+      :color="$vuetify.theme.dark ? 'dark' : 'white'"
+      app
+    >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-btn color="error" text @click="dialogLogout = true">LOGOUT</v-btn>
+      <v-btn
+        class="elevation-0 ml-2"
+        :color="$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-3'"
+        small
+        fab
+        @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+        ><v-icon>mdi-theme-light-dark</v-icon></v-btn
+      >
     </v-app-bar>
 
     <!-- Navigation -->
@@ -31,18 +43,22 @@
         </v-list-item-content>
       </v-list-item>
       <v-divider style="margin-top: 2px"></v-divider>
+
       <!-- Item -->
       <v-list dense nav>
         <v-list-item-group mandatory>
           <div v-for="header in headers" :key="header.title">
-            <v-list-item style="color: black" disabled>
+            <v-list-item disabled>
               <v-list-item-icon>
                 <v-icon>{{ header.icon }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title class="font-weight-bold">{{
-                  header.title
-                }}</v-list-item-title>
+                <v-list-item-title class="font-weight-bold"
+                  ><span
+                    :class="$vuetify.theme.dark ? 'white--text' : 'black--text'"
+                    >{{ header.title }}</span
+                  ></v-list-item-title
+                >
               </v-list-item-content>
             </v-list-item>
             <v-list-item

@@ -29,11 +29,19 @@
       <template v-slot:item.action="{ item }">
         <v-btn
           @click="edit(item)"
-          :color="
-            $vuetify.breakpoint.lg || $vuetify.breakpoint.xl ? 'white' : 'error'
+          class="elevation-2"
+          color="error"
+          :small="
+            $vuetify.breakpoint.xs ||
+            $vuetify.breakpoint.sm ||
+            $vuetify.breakpoint.md
           "
-          small
-          >Edit</v-btn
+          :x-small="$vuetify.breakpoint.xl || $vuetify.breakpoint.lg"
+          :fab="$vuetify.breakpoint.xl || $vuetify.breakpoint.lg"
+          ><span v-if="$vuetify.breakpoint.xl || $vuetify.breakpoint.lg"
+            ><v-icon small>mdi-pencil</v-icon></span
+          >
+          <span v-else>Edit</span></v-btn
         >
       </template>
     </v-data-table>

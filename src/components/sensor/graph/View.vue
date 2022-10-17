@@ -1,7 +1,8 @@
 <template>
   <div class="co2-page">
     <v-container class="container">
-      <v-card class="chart">
+      <LastSync />
+      <v-card class="mt-5">
         <v-card-title
           ><v-chip class="text-h6">{{ title }}</v-chip></v-card-title
         >
@@ -11,11 +12,12 @@
 
         <v-divider></v-divider>
 
-        <v-card-text align="right"
-          ><span
-            >Average: {{ average }}, Max: {{ max }}, Min: {{ min }}</span
-          ></v-card-text
-        >
+        <v-card-text align="right">
+          <!-- <span class="text-caption"
+            >Average : {{ average }} | Max : {{ max }} | Min : {{ min }}</span
+          > -->
+          <span>Average : {{ average }}</span>
+        </v-card-text>
       </v-card>
     </v-container>
   </div>
@@ -24,10 +26,12 @@
 <script>
 import { getByField } from "@/api/fetch";
 import { formatDateNumber } from "@/utils/formatDate";
+import LastSync from "@/components/utils/LastSync.vue";
 import LineChart from "@/components/chart/LineChart.vue";
 
 export default {
   components: {
+    LastSync,
     LineChart,
   },
   data() {
@@ -51,10 +55,12 @@ export default {
       return isNaN(ans) ? "-" : ans;
     },
     max() {
-      return Math.max(...this.data);
+      let max = Math.max(...this.data);
+      return isFinite(max) ? max : "-";
     },
     min() {
-      return Math.min(...this.data);
+      let min = Math.min(...this.data);
+      return isFinite(min) ? min : "-";
     },
   },
   methods: {
