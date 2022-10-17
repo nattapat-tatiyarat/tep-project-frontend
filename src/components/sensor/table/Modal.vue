@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="true">
+  <v-card :loading="loading">
     <template slot="progress">
       <v-progress-linear
         color="success"
@@ -137,6 +137,7 @@ export default {
         isNan: (value) => !isNaN(value),
       },
       valid: false,
+      loading: false,
     };
   },
   methods: {
@@ -145,6 +146,7 @@ export default {
         if (!this.$refs.form.validate()) {
           this.$awn.alert("Please complete the form");
         } else {
+          this.loading = true;
           try {
             const res = await create(this.newData);
             if (res.data.status_code == 200) {
@@ -158,6 +160,7 @@ export default {
             this.$awn.alert("Create failed");
             console.log(err);
           }
+          this.loading = false;
         }
       } else {
         if (!this.isChange()) {
@@ -166,6 +169,7 @@ export default {
           if (!this.$refs.form.validate()) {
             this.$awn.alert("Please complete the form");
           } else {
+            this.loading = true;
             try {
               const res = await update(this.newData);
               if (res.data.status_code == 200) {
@@ -179,6 +183,7 @@ export default {
               this.$awn.alert("Update failed");
               console.log(err);
             }
+            this.loading = false;
           }
         }
       }
