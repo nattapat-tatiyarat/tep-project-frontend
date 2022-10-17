@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card height="100%">
     <v-card-title class="text-h5">{{ title }}</v-card-title>
     <v-card-text>
       <p v-if="mode == 'update'" class="updatedAt">
