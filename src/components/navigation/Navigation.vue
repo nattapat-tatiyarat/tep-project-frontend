@@ -9,6 +9,7 @@
 
     <!-- Navigation -->
     <v-navigation-drawer v-model="drawer" app>
+      <!-- Header -->
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">{{ title }}</v-list-item-title>
@@ -16,6 +17,7 @@
         </v-list-item-content>
       </v-list-item>
       <v-divider style="margin-top: -3px"></v-divider>
+      <!-- Item -->
       <v-list dense nav>
         <v-list-item-group active-class="SelectedTile-active" mandatory>
           <div v-for="header in headers" :key="header.title">
