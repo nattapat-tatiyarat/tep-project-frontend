@@ -40,7 +40,7 @@
               link
             >
               <v-list-item-icon>
-                <v-icon>mdi-circle-small</v-icon>
+                <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -82,25 +82,45 @@ export default {
           {
             title: "Sensor Data",
             path: "/dashboard?title=Sensor%20Data",
+            icon: "mdi-circle-small",
           },
         ],
         graph: [
-          { title: "CO2", path: "/graph/1?title=CO2&field=co2" },
-          { title: "Temp", path: "/graph/2?title=Temp&field=temp" },
+          {
+            title: "CO2",
+            path: "/graph/1?title=CO2&field=co2",
+            icon: "mdi-circle-small",
+          },
+          {
+            title: "Temp",
+            path: "/graph/2?title=Temp&field=temp",
+            icon: "mdi-circle-small",
+          },
           {
             title: "Humidity",
             path: "/graph/3?title=Humidity&field=humidity",
+            icon: "mdi-circle-small",
           },
-          { title: "Light", path: "/graph/4?title=Light&field=light" },
+          {
+            title: "Light",
+            path: "/graph/4?title=Light&field=light",
+            icon: "mdi-circle-small",
+          },
           {
             title: "Soil Moisture",
             path: "/graph/5?title=Soil%20Moisture&field=soilMoisture",
+            icon: "mdi-circle-small",
           },
           {
             title: "Soil NPK",
             path: "/graph/6?title=Soil%20NPK&field=soilNPK",
+            icon: "mdi-circle-small",
           },
-          { title: "Soil pH", path: "/graph/7?title=Soil%20pH&field=soilPH" },
+          {
+            title: "Soil pH",
+            path: "/graph/7?title=Soil%20pH&field=soilPH",
+            icon: "mdi-circle-small",
+          },
         ],
       },
       drawer: false,
