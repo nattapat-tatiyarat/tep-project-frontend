@@ -38,6 +38,15 @@
       </template>
     </v-data-table>
 
+    <v-dialog v-model="dialogCreate" width="450" persistent
+      ><Modal
+        mode="create"
+        @dialog="dialogCreate = false"
+        @success="fetchData"
+        :key="dialogCreateKey"
+      />
+    </v-dialog>
+
     <v-dialog v-model="dialogEdit" width="450" persistent
       ><Modal
         mode="update"
@@ -45,15 +54,6 @@
         @dialog="dialogEdit = false"
         @success="fetchData"
         :key="dialogEditKey"
-      />
-    </v-dialog>
-
-    <v-dialog v-model="dialogCreate" width="450" persistent
-      ><Modal
-        mode="create"
-        @dialog="dialogCreate = false"
-        @success="fetchData"
-        :key="dialogCreateKey"
       />
     </v-dialog>
   </div>

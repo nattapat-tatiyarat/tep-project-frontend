@@ -11,7 +11,7 @@
           label="CO2"
           type="number"
           hide-spin-buttons
-          :rules="[rules.required]"
+          :rules="[rules.required, rules.isNan]"
         >
         </v-text-field>
         <v-text-field
@@ -127,6 +127,7 @@ export default {
       title: this.mode == "create" ? "Add" : "Edit",
       rules: {
         required: (value) => !!value,
+        isNan: (value) => isNaN(value) || "Require number",
       },
       valid: false,
     };
