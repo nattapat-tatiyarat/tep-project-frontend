@@ -102,7 +102,7 @@ export default {
         } else {
           window.localStorage.setItem("login", true);
           this.$awn.success("login success");
-          this.$router.push("/view");
+          this.$router.push("/dashboard");
         }
       } catch (err) {
         this.$awn.alert("Network error, try again later");
