@@ -79,7 +79,7 @@
     </v-dialog>
 
     <!-- Thumbnail dialog -->
-    <v-dialog v-model="dialogTest" width="200">
+    <v-dialog v-model="dialogThumbnail" width="200">
       <v-card>
         <v-img :src="userInfo.thumbnail"></v-img>
       </v-card>
