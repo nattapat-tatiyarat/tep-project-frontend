@@ -19,7 +19,7 @@
       <v-divider style="margin-top: -3px"></v-divider>
       <!-- Item -->
       <v-list dense nav>
-        <v-list-item-group active-class="SelectedTile-active" mandatory>
+        <v-list-item-group mandatory>
           <div v-for="header in headers" :key="header.title">
             <v-list-item style="color: black" disabled>
               <v-list-item-icon>
