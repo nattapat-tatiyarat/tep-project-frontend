@@ -11,12 +11,21 @@
     <v-navigation-drawer v-model="drawer" app>
       <!-- Header -->
       <v-list-item>
+        <v-list-item-avatar>
+          <img :src="userInfo.thumbnail" v-if="userInfo.thumbnail" />
+          <v-avatar color="grey" v-else
+            ><v-icon color="white">mdi-account</v-icon></v-avatar
+          >
+        </v-list-item-avatar>
+
         <v-list-item-content>
-          <v-list-item-title class="text-h6">{{ title }}</v-list-item-title>
-          <v-list-item-subtitle>{{ subtitle }}</v-list-item-subtitle>
+          <v-list-item-title class="font-weight-bold">{{
+            userInfo.name
+          }}</v-list-item-title>
+          <v-list-item-subtitle>Logged In</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-      <v-divider style="margin-top: -3px"></v-divider>
+      <v-divider style="margin-top: 2px"></v-divider>
       <!-- Item -->
       <v-list dense nav>
         <v-list-item-group mandatory>
@@ -71,8 +80,7 @@
 export default {
   data() {
     return {
-      title: "Thammasat University",
-      subtitle: "TEP",
+      userInfo: JSON.parse(window.localStorage.getItem("userInfo")),
       headers: [
         { title: "Dashboard", icon: "mdi-table", value: "dashboard" },
         { title: "Graphs", icon: "mdi-chart-line", value: "graph" },
@@ -135,6 +143,7 @@ export default {
   methods: {
     logout() {
       window.localStorage.removeItem("login");
+      window.localStorage.removeItem("userInfo");
       this.$router.push("/login");
     },
   },

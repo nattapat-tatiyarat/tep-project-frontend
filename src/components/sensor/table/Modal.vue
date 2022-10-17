@@ -1,5 +1,12 @@
 <template>
-  <v-card height="100%">
+  <v-card :loading="true">
+    <template slot="progress">
+      <v-progress-linear
+        color="success"
+        height="10"
+        indeterminate
+      ></v-progress-linear>
+    </template>
     <v-card-title class="text-h5">{{ title }}</v-card-title>
     <v-card-text>
       <p v-if="mode == 'update'" class="updatedAt">

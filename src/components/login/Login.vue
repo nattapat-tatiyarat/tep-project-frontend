@@ -101,6 +101,13 @@ export default {
           this.$awn.alert("Username or Password is incorrect");
         } else {
           window.localStorage.setItem("login", true);
+          window.localStorage.setItem(
+            "userInfo",
+            JSON.stringify({
+              name: res.data.data.name,
+              thumbnail: res.data.data.thumbnail,
+            })
+          );
           this.$awn.success("login success");
           this.$router.push("/dashboard");
         }
