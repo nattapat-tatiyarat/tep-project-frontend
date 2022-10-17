@@ -81,9 +81,7 @@
 
     <!-- Thumbnail dialog -->
     <v-dialog v-model="dialogThumbnail" width="200">
-      <v-card @click="dialogThumbnail = false">
-        <v-img :src="userInfo.thumbnail"></v-img>
-      </v-card>
+      <v-img :src="userInfo.thumbnail" @click="dialogThumbnail = false"></v-img>
     </v-dialog>
   </div>
 </template>
