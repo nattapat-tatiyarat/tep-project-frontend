@@ -67,7 +67,7 @@
         </v-row>
         <v-row>
           <v-col offset="2" offset-lg="4" offset-md="5" offset-sm="5">
-            <v-btn @click="login" color="primary" style="padding: 0 30px"
+            <v-btn @click="loading" color="primary" style="padding: 0 30px"
               >Login</v-btn
             >
           </v-col>
@@ -91,6 +91,9 @@ export default {
     window.localStorage.removeItem("login");
   },
   methods: {
+    loading() {
+      this.$awn.asyncBlock(this.login(), null);
+    },
     async login() {
       try {
         const res = await isLogin({
@@ -108,7 +111,6 @@ export default {
               thumbnail: res.data.data.thumbnail,
             })
           );
-          this.$awn.success("login success");
           this.$router.push("/dashboard");
         }
       } catch (err) {
