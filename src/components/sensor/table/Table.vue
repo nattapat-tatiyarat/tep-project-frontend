@@ -135,7 +135,7 @@ td {
 
     & .v-data-footer__select {
       margin-left: auto;
-      margin-right: auto;
+      margin-right: 0;
     }
 
     & .v-data-footer__pagination {
