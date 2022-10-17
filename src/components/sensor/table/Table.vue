@@ -134,7 +134,7 @@ td {
     padding-bottom: 8px;
 
     & .v-data-footer__select {
-      margin-right: auto;
+      margin-right: auto !important;
     }
 
     & .v-data-footer__pagination {
