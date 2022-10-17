@@ -138,8 +138,30 @@ td {
     }
 
     & .v-data-footer__pagination {
+      width: 100%;
       margin: 0;
     }
   }
+
+  .v-application--is-ltr .v-data-footer__select .v-select {
+    margin: 5px 0 5px 13px;
+  }
+  .v-application--is-rtl .v-data-footer__select .v-select {
+    margin: 5px 13px 5px 0;
+  }
 }
+// @media all and (max-width: 599.9999px) {
+//   .v-data-footer {
+//     justify-content: center;
+//     padding-bottom: 8px;
+
+//     & .v-data-footer__select {
+//       margin: 0 auto;
+//     }
+
+//     & .v-data-footer__pagination {
+//       margin: 0;
+//     }
+//   }
+// }
 </style>
