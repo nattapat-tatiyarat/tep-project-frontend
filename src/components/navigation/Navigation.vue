@@ -24,7 +24,7 @@
 
         <v-list-item-content>
           <v-list-item-title class="font-weight-bold">{{
-            userInfo.name
+            userInfo.name ? userInfo.name : "User"
           }}</v-list-item-title>
           <v-list-item-subtitle>Logged In</v-list-item-subtitle>
         </v-list-item-content>
