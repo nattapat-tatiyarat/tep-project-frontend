@@ -32,7 +32,6 @@
             <v-list-item
               :to="{
                 path: item.path,
-                query: { title: item.title, field: item.field },
               }"
               v-for="item in items[header.value]"
               :key="item.title"
@@ -77,23 +76,30 @@ export default {
         { title: "Graphs", icon: "mdi-chart-line", value: "graph" },
       ],
       items: {
-        dashboard: [{ title: "Sensor Data", path: "/dashboard", field: "" }],
+        dashboard: [
+          {
+            title: "Sensor Data",
+            path: "/dashboard?title=Sensor%20Data",
+            field: "",
+          },
+        ],
         graph: [
-          { title: "CO2", path: "/graph/1", field: "co2" },
-          { title: "Temp", path: "/graph/2", field: "temp" },
+          { title: "CO2", path: "/graph/1?title=CO2&field=co2" },
+          { title: "Temp", path: "/graph/2?title=Temp&field=temp" },
           {
             title: "Humidity",
-            path: "/graph/3",
-            field: "humidity",
+            path: "/graph/3?title=Humidity&field=humidity",
           },
-          { title: "Light", path: "/graph/4", field: "light" },
+          { title: "Light", path: "/graph/4?title=Light&field=light" },
           {
             title: "Soil Moisture",
-            path: "/graph/5",
-            field: "soilMoisture",
+            path: "/graph/5?title=Soil%20Moisture&field=soilMoisture",
           },
-          { title: "Soil NPK", path: "/graph/6", field: "soilNPK" },
-          { title: "Soil pH", path: "/graph/7", field: "soilPH" },
+          {
+            title: "Soil NPK",
+            path: "/graph/6?title=Soil%20NPK&field=soilNPK",
+          },
+          { title: "Soil pH", path: "/graph/7?title=Soil%20pH&field=soilPH" },
         ],
       },
       drawer: false,
