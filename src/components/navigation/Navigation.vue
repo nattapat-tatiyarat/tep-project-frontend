@@ -14,8 +14,9 @@
         <v-list-item-avatar>
           <img
             :src="userInfo.thumbnail"
-            v-if="userInfo.thumbnail"
             @click="dialogThumbnail = true"
+            style="cursor: pointer"
+            v-if="userInfo.thumbnail"
           />
           <v-avatar color="grey" v-else
             ><v-icon color="white">mdi-account</v-icon></v-avatar
@@ -80,7 +81,7 @@
 
     <!-- Thumbnail dialog -->
     <v-dialog v-model="dialogThumbnail" width="200">
-      <v-card>
+      <v-card @click="dialogThumbnail = false">
         <v-img :src="userInfo.thumbnail"></v-img>
       </v-card>
     </v-dialog>
