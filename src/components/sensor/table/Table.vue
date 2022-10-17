@@ -94,6 +94,7 @@ export default {
       dialogCreateKey: 0,
       dialogEditKey: 0,
       rowData: {},
+      emits: ["fetch"],
     };
   },
   mounted() {
@@ -114,6 +115,7 @@ export default {
             new Date(this.sensorData[i].updatedAt)
           );
         }
+        this.$emit("fetch", true);
       } catch (err) {
         this.$awn.alert("Error, try again later");
         console.log(err);

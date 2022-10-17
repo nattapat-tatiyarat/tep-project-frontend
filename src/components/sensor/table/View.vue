@@ -1,7 +1,7 @@
 <template>
   <div class="view-page">
     <v-container class="container">
-      <LastSync />
+      <LastSync :key="lastSyncKey" @fetch="lastSync" />
       <v-card class="mt-8"><SensorTable /></v-card>
     </v-container>
   </div>
@@ -23,11 +23,13 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      lastSyncKey: 0,
+    };
   },
   methods: {
-    peak() {
-      console.log("hovered");
+    lastSync() {
+      this.lastSyncKey++;
     },
   },
 };
