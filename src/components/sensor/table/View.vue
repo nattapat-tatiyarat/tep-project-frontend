@@ -1,8 +1,8 @@
 <template>
   <div class="view-page">
     <v-container class="container">
-      <LastSync :key="lastSyncKey" @fetch="lastSync" />
-      <v-card class="mt-8"><SensorTable /></v-card>
+      <LastSync :key="lastSyncKey" />
+      <v-card class="mt-8"><SensorTable @fetch="lastSyncKey++" /></v-card>
     </v-container>
   </div>
 </template>
@@ -26,11 +26,6 @@ export default {
     return {
       lastSyncKey: 0,
     };
-  },
-  methods: {
-    lastSync() {
-      this.lastSyncKey++;
-    },
   },
 };
 </script>
