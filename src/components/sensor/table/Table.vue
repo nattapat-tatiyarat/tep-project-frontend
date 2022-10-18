@@ -38,13 +38,11 @@
           @click="edit(item)"
           class="elevation-2"
           :color="$vuetify.theme.dark ? 'dark' : 'white'"
-          :fab="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl"
-          :x-small="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl"
-          :small="!$vuetify.breakpoint.lg && !$vuetify.breakpoint.xl"
-          ><span v-if="$vuetify.breakpoint.xl || $vuetify.breakpoint.lg"
-            ><v-icon small>mdi-pencil</v-icon></span
-          >
-          <span v-else>Edit</span></v-btn
+          :fab="!$vuetify.breakpoint.xs"
+          :x-small="!$vuetify.breakpoint.xs"
+          :small="$vuetify.breakpoint.xs"
+          ><span v-if="$vuetify.breakpoint.xs">Edit</span>
+          <span v-else><v-icon small>mdi-pencil</v-icon></span></v-btn
         >
       </template>
     </v-data-table>
@@ -173,31 +171,9 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 th,
 td {
   white-space: nowrap;
-}
-@media all and (max-width: 599.9999px) {
-  .v-data-footer {
-    justify-content: center;
-    padding-bottom: 8px;
-
-    & .v-data-footer__select {
-      margin-right: auto !important;
-    }
-
-    & .v-data-footer__pagination {
-      width: 100%;
-      margin: 0;
-    }
-  }
-
-  .v-application--is-ltr .v-data-footer__select .v-select {
-    margin: 5px 0 5px 13px;
-  }
-  .v-application--is-rtl .v-data-footer__select .v-select {
-    margin: 5px 13px 5px 0;
-  }
 }
 </style>
