@@ -112,11 +112,6 @@ export default {
     };
   },
   async mounted() {
-    window.addEventListener("resize", async () => {
-      this.limit = this.$vuetify.breakpoint.xs ? 5 : 10;
-      this.paginationKey++;
-      this.fetchData();
-    });
     const fetch = async () => {
       if (window.localStorage.getItem("login")) {
         await this.$awn.asyncBlock(this.fetchData(), null);
@@ -124,9 +119,6 @@ export default {
     };
     await fetch();
     this.paginationKey++;
-  },
-  unmounted() {
-    window.removeEventListener("resize", () => {});
   },
   methods: {
     async fetchData(page) {
