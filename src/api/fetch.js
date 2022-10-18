@@ -17,6 +17,13 @@ export const getByField = async (data) => {
   return res;
 };
 
+export const getPagination = async (data) => {
+  const res = await HTTP.get(
+    `/sensor-pagination?page=${data.page}&limit=${data.limit}`
+  );
+  return res;
+};
+
 export const create = async (data) => {
   const res = await HTTP.post(`/sensor`, data);
   return res;

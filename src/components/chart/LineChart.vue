@@ -57,7 +57,6 @@ export default {
       default: "Data",
     },
   },
-
   data() {
     return {
       chartData: {
