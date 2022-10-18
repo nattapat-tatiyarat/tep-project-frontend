@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="mx-1" align="center">
-      <v-col><span class="text-h6">Sensor Data</span></v-col>
+      <v-col><span class="text-h6">Sensor Data</span> </v-col>
       <v-col align="right"
         ><v-btn
           class="elevation-2"
@@ -14,6 +14,18 @@
     >
 
     <v-divider class="mt-3"></v-divider>
+
+    <div v-if="$vuetify.breakpoint.xs">
+      <Pagination
+        v-model="pagination"
+        class="pt-2"
+        :totalDocuments="totalDocuments"
+        :dataPerPage="limit"
+        :key="`top-${paginationKey}`"
+        @input="handlePageChange"
+      />
+      <v-divider class="mt-3"></v-divider>
+    </div>
 
     <v-data-table
       :headers="headers"
@@ -45,11 +57,12 @@
     <v-divider></v-divider>
 
     <Pagination
+      v-model="pagination"
       class="py-2"
       :totalDocuments="totalDocuments"
       :dataPerPage="limit"
-      :key="paginationKey"
-      @page="handlePageChange"
+      :key="`bottom-${paginationKey}`"
+      @input="handlePageChange"
     />
 
     <v-dialog v-model="dialogCreate" width="450" persistent
@@ -103,12 +116,13 @@ export default {
         { text: "", value: "action", sortable: false },
       ],
       sensorData: [],
-      dialogCreateKey: 0,
-      dialogEditKey: 0,
       rowData: {},
-      paginationKey: 0,
       totalDocuments: 0,
       limit: this.$vuetify.breakpoint.xs ? 5 : 10,
+      dialogCreateKey: 10,
+      dialogEditKey: 20,
+      paginationKey: 30,
+      pagination: 1,
     };
   },
   async mounted() {

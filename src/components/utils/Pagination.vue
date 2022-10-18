@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <v-pagination
-      v-model="page"
+      :value="value"
       :length="length"
       prev-icon="mdi-menu-left"
       next-icon="mdi-menu-right"
@@ -22,17 +22,19 @@ export default {
       type: Number,
       default: 1,
     },
+    value: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
-      page: 1,
       length: Math.ceil(this.totalDocuments / this.dataPerPage),
-      emits: ["page"],
     };
   },
   methods: {
     handlePageChange(value) {
-      this.$emit("page", value);
+      this.$emit("input", value);
     },
   },
 };
