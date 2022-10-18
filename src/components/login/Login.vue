@@ -13,7 +13,7 @@
               cols="12"
               offset="2"
               class="text-h5"
-              v-if="this.$vuetify.breakpoint.xs"
+              v-if="$vuetify.breakpoint.xs"
               ><span>Login</span></v-col
             >
             <v-col
@@ -22,7 +22,7 @@
               md="3"
               sm="3"
               offset="2"
-              v-if="!this.$vuetify.breakpoint.xs"
+              v-if="!$vuetify.breakpoint.xs"
             >
               <span>Username :</span>
             </v-col>
@@ -31,11 +31,11 @@
               lg="4"
               md="4"
               sm="5"
-              :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
+              :offset="$vuetify.breakpoint.xs ? '2' : '0'"
               ><v-text-field
                 v-model="username"
-                :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Username'"
-                :label="this.$vuetify.breakpoint.xs ? 'Username' : ''"
+                :placeholder="$vuetify.breakpoint.xs ? '' : 'Username'"
+                :label="$vuetify.breakpoint.xs ? 'Username' : ''"
                 :rules="[rules.required]"
                 outlined
                 dense
@@ -50,7 +50,7 @@
               md="3"
               sm="3"
               offset="2"
-              v-if="!this.$vuetify.breakpoint.xs"
+              v-if="!$vuetify.breakpoint.xs"
             >
               <span>Password :</span>
             </v-col>
@@ -59,12 +59,12 @@
               lg="4"
               md="4"
               sm="5"
-              :offset="this.$vuetify.breakpoint.xs ? '2' : '0'"
+              :offset="$vuetify.breakpoint.xs ? '2' : '0'"
               ><v-text-field
                 v-model="password"
                 type="password"
-                :placeholder="this.$vuetify.breakpoint.xs ? '' : 'Password'"
-                :label="this.$vuetify.breakpoint.xs ? 'Password' : ''"
+                :placeholder="$vuetify.breakpoint.xs ? '' : 'Password'"
+                :label="$vuetify.breakpoint.xs ? 'Password' : ''"
                 :rules="[rules.required]"
                 outlined
                 dense

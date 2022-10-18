@@ -30,21 +30,17 @@
     <v-data-table
       :headers="headers"
       :items="sensorData"
-      :items-per-page="this.$vuetify.breakpoint.xs ? 5 : 10"
+      :items-per-page="$vuetify.breakpoint.xs ? 5 : 10"
       hide-default-footer
     >
       <template v-slot:item.action="{ item }">
         <v-btn
           @click="edit(item)"
           class="elevation-2"
-          color="error"
-          :small="
-            $vuetify.breakpoint.xs ||
-            $vuetify.breakpoint.sm ||
-            $vuetify.breakpoint.md
-          "
-          :x-small="$vuetify.breakpoint.xl || $vuetify.breakpoint.lg"
-          :fab="$vuetify.breakpoint.xl || $vuetify.breakpoint.lg"
+          :color="$vuetify.theme.dark ? 'dark' : 'white'"
+          :fab="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl"
+          :x-small="$vuetify.breakpoint.lg || $vuetify.breakpoint.xl"
+          :small="!$vuetify.breakpoint.lg && !$vuetify.breakpoint.xl"
           ><span v-if="$vuetify.breakpoint.xl || $vuetify.breakpoint.lg"
             ><v-icon small>mdi-pencil</v-icon></span
           >
@@ -98,20 +94,30 @@ export default {
       dialogCreate: false,
       dialogEdit: false,
       headers: [
-        { text: "DATE", value: "createdAt", sortable: false },
-        { text: "CO2", value: "co2", sortable: false },
-        { text: "TEMP", value: "temp", sortable: false },
-        { text: "HUMIDITY", value: "humidity", sortable: false },
-        { text: "LIGHT", value: "light", sortable: false },
+        {
+          text: "DATE",
+          value: "createdAt",
+          sortable: false,
+          width: "15%",
+        },
+        { text: "CO2", value: "co2", sortable: false, width: "12%" },
+        { text: "TEMP", value: "temp", sortable: false, width: "12%" },
+        { text: "HUMIDITY", value: "humidity", sortable: false, width: "12%" },
+        { text: "LIGHT", value: "light", sortable: false, width: "12%" },
         {
           text: "SOIL MOISTURE",
           value: "soilMoisture",
-          class: "nowrap",
           sortable: false,
+          width: "12%",
         },
-        { text: "SOIL NPK", value: "soilNPK", sortable: false },
-        { text: "SOIL PH", value: "soilPH", sortable: false },
-        { text: "", value: "action", sortable: false },
+        { text: "SOIL NPK", value: "soilNPK", sortable: false, width: "12%" },
+        { text: "SOIL PH", value: "soilPH", sortable: false, width: "12%" },
+        {
+          text: "",
+          value: "action",
+          sortable: false,
+          align: "end",
+        },
       ],
       sensorData: [],
       rowData: {},
