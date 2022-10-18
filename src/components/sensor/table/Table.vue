@@ -115,7 +115,7 @@ export default {
     window.addEventListener("resize", () => {
       this.limit = this.$vuetify.breakpoint.xs ? 5 : 10;
       this.paginationKey++;
-      this.fetchData();
+      this.$awn.asyncBlock(this.fetchData(), null);
     });
     const fetch = async () => {
       if (window.localStorage.getItem("login")) {
