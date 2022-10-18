@@ -112,10 +112,10 @@ export default {
     };
   },
   async mounted() {
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", async () => {
       this.limit = this.$vuetify.breakpoint.xs ? 5 : 10;
       this.paginationKey++;
-      this.$awn.asyncBlock(this.fetchData(), null);
+      this.fetchData();
     });
     const fetch = async () => {
       if (window.localStorage.getItem("login")) {
@@ -161,7 +161,7 @@ export default {
       this.dialogEdit = true;
     },
     handlePageChange(value) {
-      this.fetchData(value);
+      this.$awn.asyncBlock(this.fetchData(value), null);
     },
   },
 };
