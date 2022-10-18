@@ -30,7 +30,6 @@
     <v-data-table
       :headers="headers"
       :items="sensorData"
-      :search="search"
       :items-per-page="this.$vuetify.breakpoint.xs ? 5 : 10"
       hide-default-footer
     >
@@ -98,9 +97,8 @@ export default {
     return {
       dialogCreate: false,
       dialogEdit: false,
-      search: "",
       headers: [
-        { text: "Date", value: "updatedAt", sortable: false },
+        { text: "DATE", value: "createdAt", sortable: false },
         { text: "CO2", value: "co2", sortable: false },
         { text: "TEMP", value: "temp", sortable: false },
         { text: "HUMIDITY", value: "humidity", sortable: false },
@@ -135,22 +133,18 @@ export default {
     this.paginationKey++;
   },
   methods: {
-    async fetchData(page) {
+    async fetchData() {
       try {
         let data = {
-          page: page || 1,
+          page: this.pagination,
           limit: this.limit,
         };
         const res = await getPagination(data);
         this.totalDocuments = res.data.data.total_documents;
-        res.data.data.data.sort(function (a, b) {
-          return new Date(a.updatedAt) - new Date(b.updatedAt);
-        });
         this.sensorData = res.data.data.data;
-
         for (let i = 0; i < this.sensorData.length; i++) {
-          this.sensorData[i].updatedAt = formatDateNumber(
-            new Date(this.sensorData[i].updatedAt)
+          this.sensorData[i].createdAt = formatDateNumber(
+            new Date(this.sensorData[i].createdAt)
           );
         }
       } catch (err) {
@@ -166,8 +160,8 @@ export default {
       this.dialogEditKey++;
       this.dialogEdit = true;
     },
-    handlePageChange(value) {
-      this.$awn.asyncBlock(this.fetchData(value), null);
+    handlePageChange() {
+      this.$awn.asyncBlock(this.fetchData(), null);
     },
   },
 };

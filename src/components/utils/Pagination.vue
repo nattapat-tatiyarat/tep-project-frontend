@@ -6,7 +6,7 @@
       prev-icon="mdi-menu-left"
       next-icon="mdi-menu-right"
       color="secondary"
-      @input="handlePageChange"
+      @input="$emit('input', $event)"
     ></v-pagination>
   </div>
 </template>
@@ -31,11 +31,6 @@ export default {
     return {
       length: Math.ceil(this.totalDocuments / this.dataPerPage),
     };
-  },
-  methods: {
-    handlePageChange(value) {
-      this.$emit("input", value);
-    },
   },
 };
 </script>
