@@ -42,7 +42,6 @@
       <!-- Item -->
       <v-list dense nav>
         <v-list-item-group mandatory>
-          <!-- <div v-for="header in headers" :key="header.title"> -->
           <v-list-group
             :value="true"
             color=""
