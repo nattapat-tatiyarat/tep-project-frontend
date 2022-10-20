@@ -10,7 +10,7 @@
     <v-card-title class="text-h5">{{ title }}</v-card-title>
     <v-card-text>
       <p v-if="mode == 'update'" class="updatedAt">
-        Last updated : {{ sensorData.updatedAt }}
+        Last updated : {{ formatDate }}
       </p>
       <v-form class="form" ref="form" v-model="valid">
         <v-text-field

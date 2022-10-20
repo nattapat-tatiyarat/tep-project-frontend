@@ -47,20 +47,24 @@
       <!-- Item -->
       <v-list dense nav>
         <v-list-item-group mandatory>
-          <div v-for="header in headers" :key="header.title">
-            <v-list-item disabled>
-              <v-list-item-icon>
-                <v-icon>{{ header.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title class="font-weight-bold"
-                  ><span
-                    :class="$vuetify.theme.dark ? 'white--text' : 'black--text'"
-                    >{{ header.title }}</span
-                  ></v-list-item-title
-                >
-              </v-list-item-content>
-            </v-list-item>
+          <!-- <div v-for="header in headers" :key="header.title"> -->
+          <v-list-group
+            :value="true"
+            color=""
+            sub-group
+            v-for="header in headers"
+            :key="header.title"
+          >
+            <v-icon slot="appendIcon">mdi-menu-down</v-icon>
+            <template v-slot:activator
+              ><v-row align="center">
+                <v-col>
+                  <span class="font-weight-bold text-subtitle-2">{{
+                    header.title
+                  }}</span></v-col
+                ></v-row
+              >
+            </template>
             <v-list-item
               :to="{
                 path: item.path,
@@ -69,14 +73,11 @@
               :key="item.title"
               link
             >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-          </div>
+          </v-list-group>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -106,16 +107,25 @@
 export default {
   data() {
     return {
+      group: true,
       userInfo: JSON.parse(window.localStorage.getItem("userInfo")),
       headers: [
-        { title: "Dashboard", icon: "mdi-table", value: "dashboard" },
-        { title: "Graphs", icon: "mdi-chart-line", value: "graph" },
+        {
+          title: "Dashboard",
+          icon: "mdi-table",
+          value: "dashboard",
+        },
+        {
+          title: "Chart",
+          icon: "mdi-chart-line",
+          value: "graph",
+        },
       ],
       items: {
         dashboard: [
           {
             title: "Sensor Data",
-            path: "/dashboard?title=Sensor%20Data",
+            path: "/dashboard",
             icon: "mdi-circle-small",
           },
         ],
@@ -176,3 +186,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.v-list-group__header__prepend-icon {
+  display: none !important;
+}
+</style>
