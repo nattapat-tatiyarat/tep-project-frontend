@@ -24,12 +24,7 @@
       <!-- Header -->
       <v-list-item>
         <v-list-item-avatar>
-          <img
-            :src="userInfo.thumbnail"
-            @click="dialogThumbnail = true"
-            style="cursor: pointer"
-            v-if="userInfo.thumbnail"
-          />
+          <img :src="userInfo.thumbnail" v-if="userInfo.thumbnail" />
           <v-avatar color="grey" v-else
             ><v-icon color="white">mdi-account</v-icon></v-avatar
           >
@@ -94,11 +89,6 @@
           <v-btn color="error" @click="dialogLogout = false">Cancel</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
-
-    <!-- Thumbnail dialog -->
-    <v-dialog v-model="dialogThumbnail" width="200">
-      <v-img :src="userInfo.thumbnail" @click="dialogThumbnail = false"></v-img>
     </v-dialog>
   </div>
 </template>
@@ -169,7 +159,6 @@ export default {
       },
       drawer: false,
       dialogLogout: false,
-      dialogThumbnail: false,
     };
   },
   mounted() {
