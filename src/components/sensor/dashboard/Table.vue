@@ -82,11 +82,12 @@
 <script>
 import { getPagination } from "@/api/fetch";
 import { formatDateNumber } from "@/utils/formatDate";
-import Modal from "@/components/sensor/table/Modal.vue";
-import Pagination from "@/components/utils/Pagination.vue";
 
 export default {
-  components: { Modal, Pagination },
+  components: {
+    Modal: () => import("@/components/sensor/dashboard/Modal.vue"),
+    Pagination: () => import("@/components/utils/Pagination.vue"),
+  },
   data() {
     return {
       dialogCreate: false,
@@ -125,13 +126,15 @@ export default {
       dialogEditKey: 20,
       paginationKey: 30,
       pagination: 1,
+      emits: ["fetch"],
     };
   },
   async mounted() {
     const fetch = async () => {
-      if (window.localStorage.getItem("login")) {
-        await this.$awn.asyncBlock(this.fetchData(), null);
-      }
+      // if (window.localStorage.getItem("login")) {
+      //   await this.$awn.asyncBlock(this.fetchData(), null);
+      // }
+      await this.$awn.asyncBlock(this.fetchData(), null);
     };
     await fetch();
     this.paginationKey++;
@@ -151,6 +154,7 @@ export default {
             new Date(this.sensorData[i].createdAt)
           );
         }
+        this.$emit("fetch", true);
       } catch (err) {
         this.$awn.alert("Error, try again later");
         console.log(err);

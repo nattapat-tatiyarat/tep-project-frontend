@@ -8,17 +8,17 @@ const routes = [
     path: "/",
     name: "home",
     component: () => import("@/components/Home.vue"),
-    redirect: "login",
+    redirect: "dashboard",
     children: [
-      {
-        path: "login",
-        name: "login",
-        component: () => import("@/components/login/Login.vue"),
-      },
+      // {
+      //   path: "login",
+      //   name: "login",
+      //   component: () => import("@/components/login/Login.vue"),
+      // },
       {
         path: "dashboard",
         name: "dashboard",
-        component: () => import("@/components/sensor/table/View.vue"),
+        component: () => import("@/components/sensor/dashboard/View.vue"),
       },
       {
         path: "graph",

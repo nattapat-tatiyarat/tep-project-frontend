@@ -26,13 +26,11 @@
 <script>
 import { getByField } from "@/api/fetch";
 import { formatDateNumber } from "@/utils/formatDate";
-import LastSync from "@/components/utils/LastSync.vue";
-import LineChart from "@/components/chart/LineChart.vue";
 
 export default {
   components: {
-    LastSync,
-    LineChart,
+    LastSync: () => import("@/components/utils/LastSync.vue"),
+    LineChart: () => import("@/components/utils/Chart.vue"),
   },
   data() {
     return {
@@ -43,9 +41,10 @@ export default {
     };
   },
   mounted() {
-    if (window.localStorage.getItem("login")) {
-      this.$awn.asyncBlock(this.fetchData(), null);
-    }
+    // if (window.localStorage.getItem("login")) {
+    //   this.$awn.asyncBlock(this.fetchData(), null);
+    // }
+    this.$awn.asyncBlock(this.fetchData(), null);
   },
   computed: {
     average() {
@@ -54,25 +53,22 @@ export default {
       let ans = (sum / length).toFixed(2);
       return isNaN(ans) ? "-" : ans;
     },
-    max() {
-      let max = Math.max(...this.data);
-      return isFinite(max) ? max : "-";
-    },
-    min() {
-      let min = Math.min(...this.data);
-      return isFinite(min) ? min : "-";
-    },
+    // max() {
+    //   let max = Math.max(...this.data);
+    //   return isFinite(max) ? max : "-";
+    // },
+    // min() {
+    //   let min = Math.min(...this.data);
+    //   return isFinite(min) ? min : "-";
+    // },
   },
   methods: {
     async fetchData() {
       try {
         const res = await getByField(this.field);
-        res.data.data.sort(function (a, b) {
-          return new Date(a.updatedAt) - new Date(b.updatedAt);
-        });
         res.data.data.forEach((data) => {
           this.data.push(data[this.field]);
-          this.xLabel.push(formatDateNumber(data.updatedAt));
+          this.xLabel.push(formatDateNumber(data.createdAt));
         });
       } catch (err) {
         this.$awn.alert("Error, try again later");

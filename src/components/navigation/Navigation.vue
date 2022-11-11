@@ -24,17 +24,24 @@
       <!-- Header -->
       <v-list-item>
         <v-list-item-avatar>
-          <img :src="userInfo.thumbnail" v-if="userInfo.thumbnail" />
+          <!-- <img :src="userInfo.thumbnail" v-if="userInfo.thumbnail" />
           <v-avatar color="grey" v-else
             ><v-icon color="white">mdi-account</v-icon></v-avatar
-          >
+          > -->
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Emblem_of_Thammasat_University.svg/1200px-Emblem_of_Thammasat_University.svg.png"
+          />
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title class="font-weight-bold">{{
+          <!-- <v-list-item-title class="font-weight-bold">{{
             userInfo.name ? userInfo.name : "User"
-          }}</v-list-item-title>
-          <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+          }}</v-list-item-title> 
+          <v-list-item-subtitle>Logged In</v-list-item-subtitle> -->
+          <v-list-item-title class="font-weight-bold"
+            >Thammasat University</v-list-item-title
+          >
+          <v-list-item-subtitle>TEP Project</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-divider style="margin-top: 2px"></v-divider>

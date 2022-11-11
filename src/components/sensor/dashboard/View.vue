@@ -9,13 +9,11 @@
 
 <script>
 import { formatDateText } from "@/utils/formatDate";
-import LastSync from "@/components/utils/LastSync.vue";
-import SensorTable from "@/components/sensor/table/Table.vue";
 
 export default {
   components: {
-    LastSync,
-    SensorTable,
+    LastSync: () => import("@/components/utils/LastSync.vue"),
+    SensorTable: () => import("@/components/sensor/dashboard/Table.vue"),
   },
   computed: {
     newDate() {
