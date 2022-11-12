@@ -8,7 +8,7 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-btn color="error" text @click="dialogLogout = true">LOGOUT</v-btn>
+      <!-- <v-btn color="error" text @click="dialogLogout = true">LOGOUT</v-btn> -->
       <v-btn
         class="elevation-0 ml-2"
         :color="$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-3'"
@@ -84,7 +84,7 @@
     </v-navigation-drawer>
 
     <!-- Logout Confirmation -->
-    <v-dialog v-model="dialogLogout" width="350" persistent>
+    <!-- <v-dialog v-model="dialogLogout" width="350" persistent>
       <v-card class="py-1">
         <v-card-title class="justify-center">Confirmation</v-card-title>
         <v-card-text class="text-center"
@@ -95,7 +95,7 @@
           <v-btn color="error" @click="dialogLogout = false">Cancel</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </div>
 </template>
 
@@ -173,11 +173,11 @@ export default {
     }
   },
   methods: {
-    logout() {
-      window.localStorage.removeItem("login");
-      window.localStorage.removeItem("userInfo");
-      this.$router.push("/login");
-    },
+    // logout() {
+    //   window.localStorage.removeItem("login");
+    //   window.localStorage.removeItem("userInfo");
+    //   this.$router.push("/login");
+    // },
   },
 };
 </script>
