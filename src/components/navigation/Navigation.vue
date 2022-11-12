@@ -41,7 +41,7 @@
           <v-list-item-title class="font-weight-bold"
             >Thammasat University</v-list-item-title
           >
-          <v-list-item-subtitle>TEP Project</v-list-item-subtitle>
+          <v-list-item-subtitle>TEPE Project</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-divider style="margin-top: 2px"></v-divider>
