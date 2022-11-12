@@ -39,7 +39,7 @@
           }}</v-list-item-title> 
           <v-list-item-subtitle>Logged In</v-list-item-subtitle> -->
           <v-list-item-title class="font-weight-bold"
-            >Thammasat University</v-list-item-title
+            >TU Thammasat University</v-list-item-title
           >
           <v-list-item-subtitle>TEPE Project</v-list-item-subtitle>
         </v-list-item-content>
