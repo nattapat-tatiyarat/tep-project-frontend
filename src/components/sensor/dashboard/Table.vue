@@ -2,7 +2,7 @@
   <div>
     <v-row class="mx-1" align="center">
       <v-col><span class="text-h6">Sensor Data</span> </v-col>
-      <v-col align="right"
+      <!-- <v-col align="right"
         ><v-btn
           class="elevation-2"
           color="success"
@@ -10,8 +10,8 @@
           ><v-icon small>mdi-plus-circle</v-icon
           ><span style="margin-left: 5px">ADD</span></v-btn
         ></v-col
-      ></v-row
-    >
+      > -->
+    </v-row>
 
     <v-divider class="mt-3"></v-divider>
 
@@ -33,7 +33,7 @@
       :items-per-page="$vuetify.breakpoint.xs ? 5 : 10"
       hide-default-footer
     >
-      <template v-slot:item.action="{ item }">
+      <!-- <template v-slot:item.action="{ item }">
         <v-btn
           @click="edit(item)"
           class="elevation-2"
@@ -44,7 +44,7 @@
           ><span v-if="$vuetify.breakpoint.xs">Edit</span>
           <span v-else><v-icon small>mdi-pencil</v-icon></span></v-btn
         >
-      </template>
+      </template> -->
     </v-data-table>
 
     <v-divider></v-divider>
@@ -111,12 +111,12 @@ export default {
         },
         { text: "SOIL NPK", value: "soilNPK", sortable: false, width: "12%" },
         { text: "SOIL PH", value: "soilPH", sortable: false, width: "12%" },
-        {
-          text: "",
-          value: "action",
-          sortable: false,
-          align: "end",
-        },
+        // {
+        //   text: "",
+        //   value: "action",
+        //   sortable: false,
+        //   align: "end",
+        // },
       ],
       sensorData: [],
       rowData: {},

@@ -10,14 +10,11 @@
           ><LineChart :data="data" :xLabel="xLabel" :dataName="title"
         /></v-card-text>
 
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider>
 
         <v-card-text align="right">
-          <!-- <span class="text-caption"
-            >Average : {{ average }} | Max : {{ max }} | Min : {{ min }}</span
-          > -->
           <span>Average : {{ average }}</span>
-        </v-card-text>
+        </v-card-text> -->
       </v-card>
     </v-container>
   </div>
