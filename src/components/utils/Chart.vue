@@ -64,8 +64,9 @@ export default {
         datasets: [
           {
             label: this.dataName,
-            backgroundColor: "#f87979",
             data: this.data,
+            backgroundColor: "#f87979",
+            borderColor: this.$vuetify.theme.dark ? "#505050" : "#DCDCDC",
           },
         ],
       },
@@ -88,6 +89,16 @@ export default {
         },
       },
     };
+  },
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "#505050" : "#DCDCDC";
+    },
+  },
+  watch: {
+    theme() {
+      this.chartData.datasets[0].borderColor = this.theme;
+    },
   },
 };
 </script>
