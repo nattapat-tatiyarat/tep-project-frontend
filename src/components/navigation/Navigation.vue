@@ -112,7 +112,7 @@ export default {
           value: "dashboard",
         },
         {
-          title: "Chart",
+          title: "Graph",
           icon: "mdi-chart-line",
           value: "graph",
         },
