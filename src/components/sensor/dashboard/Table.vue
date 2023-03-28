@@ -47,23 +47,23 @@
       </template> -->
 
       <template v-slot:item="{ item }">
-      <tr>
-        <td>{{ item.payload[0] }}</td>
-        <td>{{ item.payload[1] }}</td>
-        <td>{{ item.payload[2] }}</td>
-        <td>{{ item.payload[3] }}</td>
-        <td>{{ item.payload[4] }}</td>
-        <td>{{ item.payload[5] }}</td>
-        <td>{{ item.payload[6] }}</td>
-      </tr>
-    </template>
+        <tr>
+          <td>{{ item.payload[0] }}</td>
+          <td>{{ item.payload[1] }}</td>
+          <td>{{ item.payload[2] }}</td>
+          <td>{{ item.payload[3] }}</td>
+          <td>{{ item.payload[4] }}</td>
+          <td>{{ item.payload[5] }}</td>
+          <td>{{ item.payload[6] }}</td>
+        </tr>
+      </template>
     </v-data-table>
 
     <v-divider></v-divider>
 
     <Pagination
       v-model="pagination"
-      class="py-2"
+      class="py-2 mx-5"
       :totalDocuments="totalDocuments"
       :dataPerPage="limit"
       :key="`bottom-${paginationKey}`"
@@ -106,14 +106,16 @@ export default {
       dialogEdit: false,
       headers: [
         {
-          text: "DATE", sortable: false,
+          text: "DATE",
+          sortable: false,
         },
         { text: "TIMESTAMP", sortable: false },
         { text: "HUMIDITY", sortable: false },
         { text: "TEMPERATURE", sortable: false },
-        { text: "SOIL MOISTURE",  sortable: false},
+        { text: "SOIL MOISTURE", sortable: false },
         {
-          text: "LIGHT", sortable: false,
+          text: "LIGHT",
+          sortable: false,
         },
         { text: "CO2", sortable: false },
       ],
