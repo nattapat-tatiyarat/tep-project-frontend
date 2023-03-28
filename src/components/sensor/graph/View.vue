@@ -7,7 +7,7 @@
           ><v-chip class="text-h6">{{ title }}</v-chip></v-card-title
         >
         <v-card-text
-          ><LineChart :data="data" :xLabel="xLabel" :dataName="title"
+          ><LineChart :data="sensorData" :xLabel="xLabel" :dataName="title"
         /></v-card-text>
 
         <!-- <v-divider></v-divider>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { getByField } from "@/api/fetch";
+import { getData } from "@/api/fetch";
 import { formatDateNumber } from "@/utils/formatDate";
 
 export default {
@@ -35,12 +35,10 @@ export default {
       xLabel: [],
       title: this.$route.query.title,
       field: this.$route.query.field,
+      sensorData: [],
     };
   },
   mounted() {
-    // if (window.localStorage.getItem("login")) {
-    //   this.$awn.asyncBlock(this.fetchData(), null);
-    // }
     this.$awn.asyncBlock(this.fetchData(), null);
   },
   computed: {
@@ -50,22 +48,32 @@ export default {
       let ans = (sum / length).toFixed(2);
       return isNaN(ans) ? "-" : ans;
     },
-    // max() {
-    //   let max = Math.max(...this.data);
-    //   return isFinite(max) ? max : "-";
-    // },
-    // min() {
-    //   let min = Math.min(...this.data);
-    //   return isFinite(min) ? min : "-";
-    // },
   },
   methods: {
     async fetchData() {
       try {
-        const res = await getByField(this.field);
-        res.data.data.forEach((data) => {
-          this.data.push(data[this.field]);
-          this.xLabel.push(formatDateNumber(data.createdAt));
+        const res = await getData();
+        let index;
+        switch (this.field) {
+          case "temp":
+            index = 4;
+            break;
+          case "light":
+            index = 5;
+            break;
+          case "humidity":
+            index = 2;
+            break;
+          case "soilMoisture":
+            index = 3;
+            break;
+          case "co2":
+            index = 6;
+            break;
+        }
+        res.data.data.data.forEach((element) => {
+          this.sensorData.push(element.payload[index]);
+          this.xLabel.push(`${element.payload[0]} ${element.payload[1]}`);
         });
       } catch (err) {
         this.$awn.alert("Error, try again later");

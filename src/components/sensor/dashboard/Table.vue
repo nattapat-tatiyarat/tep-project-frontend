@@ -45,6 +45,18 @@
           <span v-else><v-icon small>mdi-pencil</v-icon></span></v-btn
         >
       </template> -->
+
+      <template v-slot:item="{ item }">
+      <tr>
+        <td>{{ item.payload[0] }}</td>
+        <td>{{ item.payload[1] }}</td>
+        <td>{{ item.payload[2] }}</td>
+        <td>{{ item.payload[3] }}</td>
+        <td>{{ item.payload[4] }}</td>
+        <td>{{ item.payload[5] }}</td>
+        <td>{{ item.payload[6] }}</td>
+      </tr>
+    </template>
     </v-data-table>
 
     <v-divider></v-divider>
@@ -94,29 +106,16 @@ export default {
       dialogEdit: false,
       headers: [
         {
-          text: "DATE",
-          value: "createdAt",
-          sortable: false,
-          width: "15%",
+          text: "DATE", sortable: false,
         },
-        { text: "CO2", value: "co2", sortable: false, width: "12%" },
-        { text: "TEMP", value: "temp", sortable: false, width: "12%" },
-        { text: "HUMIDITY", value: "humidity", sortable: false, width: "12%" },
-        { text: "LIGHT", value: "light", sortable: false, width: "12%" },
+        { text: "TIMESTAMP", sortable: false },
+        { text: "HUMIDITY", sortable: false },
+        { text: "TEMPERATURE", sortable: false },
+        { text: "SOIL MOISTURE",  sortable: false},
         {
-          text: "SOIL MOISTURE",
-          value: "soilMoisture",
-          sortable: false,
-          width: "12%",
+          text: "LIGHT", sortable: false,
         },
-        { text: "SOIL NPK", value: "soilNPK", sortable: false, width: "12%" },
-        { text: "SOIL PH", value: "soilPH", sortable: false, width: "12%" },
-        // {
-        //   text: "",
-        //   value: "action",
-        //   sortable: false,
-        //   align: "end",
-        // },
+        { text: "CO2", sortable: false },
       ],
       sensorData: [],
       rowData: {},
@@ -149,11 +148,11 @@ export default {
         const res = await getPagination(data);
         this.totalDocuments = res.data.data.total_documents;
         this.sensorData = res.data.data.data;
-        for (let i = 0; i < this.sensorData.length; i++) {
-          this.sensorData[i].createdAt = formatDateNumber(
-            new Date(this.sensorData[i].createdAt)
-          );
-        }
+        // for (let i = 0; i < this.sensorData.length; i++) {
+        //   this.sensorData[i].createdAt = formatDateNumber(
+        //     new Date(this.sensorData[i].createdAt)
+        //   );
+        // }
         this.$emit("fetch", true);
       } catch (err) {
         this.$awn.alert("Error, try again later");
