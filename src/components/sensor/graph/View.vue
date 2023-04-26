@@ -53,10 +53,11 @@ export default {
     async fetchData() {
       try {
         const res = await getData();
+        console.log(res.data)
         let index;
         switch (this.field) {
           case "temp":
-            index = 4;
+            index = 3;
             break;
           case "light":
             index = 5;
@@ -65,7 +66,7 @@ export default {
             index = 2;
             break;
           case "soilMoisture":
-            index = 3;
+            index = 4;
             break;
           case "co2":
             index = 6;
