@@ -53,7 +53,7 @@ export default {
     async fetchData() {
       try {
         const res = await getData();
-        console.log(res.data)
+        console.log(res.data);
         let index;
         switch (this.field) {
           case "temp":
@@ -72,7 +72,8 @@ export default {
             index = 6;
             break;
         }
-        res.data.data.data.forEach((element) => {
+        const slice = res.data.data.data.slice(res.data.data.data.length-100);
+        slice.forEach((element) => {
           this.sensorData.push(element.payload[index]);
           this.xLabel.push(`${element.payload[0]} ${element.payload[1]}`);
         });
