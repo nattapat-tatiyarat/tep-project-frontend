@@ -110,7 +110,7 @@ export default {
       items: {
         dashboard: [
           {
-            title: "Sensor Data",
+            title: "Sensors Data",
             path: "/dashboard",
             icon: "mdi-circle-small",
           },
