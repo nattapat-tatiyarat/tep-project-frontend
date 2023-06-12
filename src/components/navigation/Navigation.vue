@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- App bar -->
     <v-app-bar
       elevation="1"
       :color="$vuetify.theme.dark ? 'dark' : 'white'"
@@ -8,7 +7,6 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <!-- <v-btn color="error" text @click="dialogLogout = true">LOGOUT</v-btn> -->
       <v-btn
         class="elevation-0 ml-2"
         :color="$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-3'"
@@ -19,25 +17,18 @@
       >
     </v-app-bar>
 
-    <!-- Navigation -->
     <v-navigation-drawer v-model="drawer" app>
-      <!-- Header -->
+
       <v-list-item>
         <v-list-item-avatar>
-          <!-- <img :src="userInfo.thumbnail" v-if="userInfo.thumbnail" />
-          <v-avatar color="grey" v-else
-            ><v-icon color="white">mdi-account</v-icon></v-avatar
-          > -->
+
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Emblem_of_Thammasat_University.svg/1200px-Emblem_of_Thammasat_University.svg.png"
           />
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <!-- <v-list-item-title class="font-weight-bold">{{
-            userInfo.name ? userInfo.name : "User"
-          }}</v-list-item-title> 
-          <v-list-item-subtitle>Logged In</v-list-item-subtitle> -->
+
           <v-list-item-title class="font-weight-bold"
             >TU Thammasat University</v-list-item-title
           >
@@ -46,7 +37,6 @@
       </v-list-item>
       <v-divider style="margin-top: 2px"></v-divider>
 
-      <!-- Item -->
       <v-list dense nav>
         <v-list-item-group mandatory>
           <v-list-group
