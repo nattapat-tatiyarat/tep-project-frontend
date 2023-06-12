@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="mx-1" align="center">
-      <v-col><span class="text-h6">Sensor Data</span> </v-col>
+      <v-col><span class="text-h6">Sensors Data</span> </v-col>
       <!-- <v-col align="right"
         ><v-btn
           class="elevation-2"
@@ -33,18 +33,6 @@
       :items-per-page="$vuetify.breakpoint.xs ? 5 : 10"
       hide-default-footer
     >
-      <!-- <template v-slot:item.action="{ item }">
-        <v-btn
-          @click="edit(item)"
-          class="elevation-2"
-          :color="$vuetify.theme.dark ? 'dark' : 'white'"
-          :fab="!$vuetify.breakpoint.xs"
-          :x-small="!$vuetify.breakpoint.xs"
-          :small="$vuetify.breakpoint.xs"
-          ><span v-if="$vuetify.breakpoint.xs">Edit</span>
-          <span v-else><v-icon small>mdi-pencil</v-icon></span></v-btn
-        >
-      </template> -->
 
       <template v-slot:item="{ item }">
         <tr>
